@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            width: 70%;
+            text-align: center;
+        }
+
+        /* For mobile screens */
+        @media (max-width: 768px) {
+            body {
+                width: 100%;
+            }
+        }
+
+        table {
+            table-layout: fixed;
+            width: 100%;
+            border: 0;
+            text-align: center;
+        }
+
+        .main-table {
+            background-color: white;
+            table-layout: fixed;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* The Brief */
+        .header {
+            text-align: center;
+            color: white;
+            font-size: 26px;
+            border: 1px solid #2D68C4;
+            width: 60%;
+            padding: 10px 5px;
+            background-color: #1da1f2;
+            display: inline-block;
+        }
+
+        /* Top Headlines, Multiple.../
+        .sub-header {
+            text-align: center;
+            font-size: 18px;
+            width: 80%;
+            border-bottom: 3px solid #1da1f2;
+            text-transform: uppercase;
+        }
+
+        /* Articles container */
+        .articles-container {
+            text-align: left;
+            color: #282828;
+            border: 2px solid #353535;
+            border-radius: 3px;
+            padding: 10px;
+            width: 80%;
+            display: inline-block;
+        }
+
+        /* Individual articles */
+        .article-source {
+            border-bottom: 2px solid #1da1f2;
+            font-size: 22px;
+            font-weight: medium;
+            text-align: center;
+            padding-top:5px
+        }
+
+        .article-title {
+            font-size: 14px;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        .article-link {
+            font-size: 13px;
+            line-height: 0;
+            margin-top: 0px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999999;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <table role="presentation">
+        <tr>
+            <td align="center">
+                <table class="main-table">
+                    <tr>
+                        <td align="center">
+                            <h1 class="header">
+                                The Brief
+                            </h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <h2 class="sub-header">
+                                Top Headlines, Multiple Sources, One Place.
+                            </h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <div class="articles-container">
+                                {% for article in articles %}
+                                    <div>
+                                        {% if (articles.index(article)+1)%5 == 1 %}
+                                            <h2 class="article-source">
+                                                {{ article["source"] }}
+                                            </h2>
+                                        {% endif %}
+                                        <h3 class="article-title">
+                                            {{ articles.index(article)%5 + 1 }}. {{ article["title"] }}
+                                        </h3>
+                                        <h4 class="article-link">
+                                            <a href="{{ article['url'] }}" target="_blank">Read more</a>
+                                        </h4>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <div class="footer">
+                                <p>You're receiving this email because you subscribed to receive daily news updates.</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
