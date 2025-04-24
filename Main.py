@@ -4,3 +4,4 @@ from NewsConstructor import NewsConstructor
 program = NewsConstructor()
 program.get_and_send_articles()
 
+

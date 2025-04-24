@@ -23,13 +23,10 @@ class NewsApi:
             self.article_count += 5
         return article_data
 
-    #Make a HTTP Get request to the News Source's API and return the data extracted
+    #Make an HTTP Get request to the News Source's API and return the data extracted
     def request_data(self,source_link,parameters):
-        try:
-            response = requests.get(url=source_link, params=parameters)
-            response.raise_for_status()
-        except Exception as e:
-            return f"An error occurred during API request: {e}"
+        response = requests.get(url=source_link, params=parameters)
+        response.raise_for_status()
         return response
 
     #Extract New York Time's data via API, format it, and return it
@@ -39,18 +36,16 @@ class NewsApi:
             "api-key": os.getenv("NYT_API_KEY"),
         }
         response = self.request_data(api,params)
-        try:
-            data = response.json()["results"][:count]
-            for article in data:
-                temp_data = {
-                    "title": article['title'].split("|")[0].strip(),
-                    "url": article['url'],
-                    "source": "New York Times",
-                }
-                articles.append(temp_data)
-        except Exception as e:
-            print(f"An error occurred during data parsing and filtering: {e}")
-            return None
+
+        data = response.json()["results"][:count]
+        for article in data:
+            temp_data = {
+                "title": article['title'].split("|")[0].strip(),
+                "url": article['url'],
+                "source": "New York Times",
+            }
+            articles.append(temp_data)
+
         return articles
 
     # Extract Guardian's data via API, format it, and return it
@@ -61,16 +56,13 @@ class NewsApi:
             "page-size": 50,
         }
         response = self.request_data(api, params)
-        try:
-            data = response.json()["response"]["results"][:count]
-            for article in data:
-                temp_data = {
-                    "title": article["webTitle"].strip(),
-                    "url": article['webUrl'],
-                    "source": "The Guardian",
-                }
-                articles.append(temp_data)
-        except Exception as e:
-            print(f"An error occurred during data parsing and filtering: {e}")
-            return None
+        data = response.json()["response"]["results"][:count]
+        for article in data:
+            temp_data = {
+                "title": article["webTitle"].strip(),
+                "url": article['webUrl'],
+                "source": "The Guardian",
+            }
+            articles.append(temp_data)
+
         return articles
