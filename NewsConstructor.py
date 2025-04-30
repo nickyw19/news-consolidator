@@ -155,6 +155,7 @@ class NewsConstructor:
                     msg = msg.as_string()
                 )
                 connection.close()
+                print("Email sent successfully.")
                 with open("/Users/nickyw./PycharmProjects/EmailConsolidator/email_execution_log", "a") as f:
                     f.write(f"[{datetime.datetime.now()}]\n")
                     f.write("Email sent successfully.\n")
