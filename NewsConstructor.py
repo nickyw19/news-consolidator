@@ -27,14 +27,13 @@ class NewsConstructor:
     def __init__(self):
         load_dotenv()
 
-    #Method to log any errors into a text file for easier debugging
+    #Method to print out error details in the case an Exception is raised
     def log_error(self,error, method):
-        with open("email_execution_log", "a") as f:
-            f.write(f"[{datetime.datetime.now()}]\n")
-            f.write(f"Error: {error}\n")
-            f.write(f"Method that caused error: {method}\n")
-            f.write(f"Traceback: {traceback.format_exc()}\n")
-            f.write("-------------------------\n")
+        print(f"[{datetime.datetime.now()}]\n")
+        print(f"Error: {error}\n")
+        print(f"Method that caused error: {method}\n")
+        print(f"Traceback: {traceback.format_exc()}\n")
+        print("-------------------------\n")
 
     #Main method that calls all methods needed to extract and send the required data
     def get_and_send_articles(self):
@@ -155,12 +154,9 @@ class NewsConstructor:
                     msg = msg.as_string()
                 )
                 connection.close()
+                print(f"[{datetime.datetime.now()}]\n")
                 print("Email sent successfully.")
-                with open("/Users/nickyw./PycharmProjects/EmailConsolidator/email_execution_log", "a") as f:
-                    f.write(f"[{datetime.datetime.now()}]\n")
-                    f.write("Email sent successfully.\n")
-                    f.write("-------------------------\n")
-
+                print("-------------------------\n")
 
         except Exception as e:
             self.log_error(e,"send_email")
