@@ -7,23 +7,24 @@ and aggregate them into a single email (with duplicates removed and replaced wit
 is to bring recipients up-to-date on the latest news from multiple sources in a bite-sized manner.
 
 # Installation:
-1. **Navigate to the directory**: Go to the directory where you want to place the cloned repository (if you're not already there). Use the `cd` command to navigate to your preferred folder.
-2. **Clone the repository**: git clone https://github.com/nickyw19/news-consolidator.git
-3. **Install required packages**: In the terminal, input pip install -r requirements.txt and press ENTER
-4. **Other requirements needed**:
-   - **Create API Keys**:
-     - New York Times API Key: Create your API key using https://developer.nytimes.com/docs/articlesearch-product/1/overview
-     - The Guardian API Key: Create your API key using https://open-platform.theguardian.com/documentation/
-   - **Configure Email-sending Settings**:
-     - Input the email addresses for recipient(s)) and sender in the `NewsConstructor.py` file .
-     - For the sender’s email, you'll need to generate an app password via your email provider's security settings.
-   - **Set Up Environment Variables:**
-     - Open the `NewsAPI.py` and `NewsConstructor.py` files.
-     - Use **Ctrl+F** (or Command+F) to search for `os.getenv` in both files and input your values in the appropriate places
-5. **Run the project**: Open the files in an IDE or input `python main.py` into the terminal and hit ENTER
-
-# Additional Setup (Optional)
-Setup Cron (Time-based job scheduler) to run the program on a frequent basis using https://www.uptimia.com/learn/schedule-cron-jobs-in-python#:~:text=Schedule%20Python%20Scripts%20with%20Cron&text=Create%20a%20Python%20Script%3A%20First,crontab%20%2De%20in%20the%20terminal
+1. **Requirements needed**:
+   - New York Times API Key: Create your API key using https://developer.nytimes.com/docs/articlesearch-product/1/overview
+   - The Guardian API Key: Create your API key using https://open-platform.theguardian.com/documentation/
+   - Emails: Create Sender and Recipient emails that you would like the program to use (if they don't currently exist)
+   - App password for Sender: Generate this via your email provider's security settings
+   
+2. **Running the program via Github Actions**:
+   - Fork the repository: Click the `Fork` button on the top right of this repository
+   - Add Secrets: Add your API keys and emails as Secrets in Github actions (https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)
+   - Set scheduler: In `.github/workflows/daily-script.yml`, edit the cron expression in line 5 to set your preferred schedule (https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules) 
+   - Auto-execute program: Github Actions will automatically run the program based on this scheduled time
+   
+3. **Running the program locally**
+   - Navigate to the directory: Open the Terminal and go to the directory where you want to place the cloned repository
+   - Clone the repository: In the terminal, input `git clone https://github.com/nickyw19/news-consolidator.git` and press ENTER
+   - Install required packages: In the terminal, input `pip install -r requirements.txt` and press ENTER 
+   - Create environment variables: Create a `.env` file in the project directory with the same keys & values used as Secrets 
+   - Run the program: Input `python Main.py` into the terminal and press ENTER
 
 # Data Description:
 The data was queried from multiple news sources via 2 methods: APIs and Webscraping. The headline and the url
