@@ -20,6 +20,15 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+          
+
+      - name: Set environment variables
+        run: |
+          echo "NYT_API_KEY=${{ secrets.NYT_API_KEY }}" >> $GITHUB_ENV
+          echo "GUARDIAN_API_KEY=${{ secrets.GUARDIAN_API_KEY }}" >> $GITHUB_ENV
+          echo "SENDER_EMAIL=${{ secrets.SENDER_EMAIL }}" >> $GITHUB_ENV
+          echo "RECIPIENT_EMAIL=${{ secrets.RECIPIENT_EMAIL }}" >> $GITHUB_ENV
+          echo "GMAIL_APP_PW=${{ secrets.GMAIL_APP_PW }}" >> $GITHUB_ENV
 
       - name: Run script
         run: python Main.py
