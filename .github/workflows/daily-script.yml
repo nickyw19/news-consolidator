@@ -2,7 +2,7 @@ name: Daily Script
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # Every day at 12 AM UTC time
+    - cron: '40 22 * * *'   # Based on UTC time
   workflow_dispatch:       # Allows manual run
 
 jobs:
