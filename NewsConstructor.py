@@ -66,11 +66,8 @@ class NewsConstructor:
     #Add articles to the articles list
     def add_articles(self, data):
         try:
-            if len(data) == 0:
-                self.articles.append("No articles to add")
-            else:
-                for article in data:
-                    self.articles.append(article)
+            for article in data:
+                self.articles.append(article)
         except Exception as e:
             self.log_error(e,"add_articles")
             return None
@@ -86,8 +83,6 @@ class NewsConstructor:
                 add_article = True
                 current_article = self.articles[index]
                 for article in formatted_list:
-                    if article == "No articles to add":
-                        continue
                     article_to_compare = article['title'].lower().split(" ")
                     article_to_add = current_article['title'].lower().split(" ")
 
