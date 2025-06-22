@@ -32,8 +32,6 @@ class NewsWebScraper:
         elif news_source == "TechCrunch":
             json_data = soup.find_all(class_="loop-card__title-link")[:num]
 
-        else:
-            news_source = "No Valid Source"
 
         for article in json_data:
             headline = article.getText().strip()
